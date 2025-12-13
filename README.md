@@ -64,4 +64,76 @@ npm install
 npx prisma migrate dev
 node server.js
 
+---
+## API Documentation
+
+### Base URL
+http://localhost:4000
+
+---
+
+### Authentication
+
+#### Register
+POST /api/auth/register  
+Body:
+```json
+{
+  "name": "User Name",
+  "email": "user@example.com",
+  "password": "password"
+}
+
+#### Login
+POST /api/auth/login
+Body:
+```json
+{
+    "email": "user@example.com",
+    "password": "password"
+}
+
+#### Get current user
+GET /api/auth/me
+Headers:
+Authorization: Bearer <JWT_TOKEN>
+
+---
+
+### Notes
+All note routes require:
+Header:
+Authorization: Bearer <JWT_TOKEN>
+
+#### Get Notes
+GET /api/notes
+
+#### Create Note
+POST /api/notes
+
+Body:
+
+{
+  "title": "Note title",
+  "content": "Note content"
+}
+
+#### Update Note
+PUT /api/notes/:id
+
+Body:
+
+{
+  "title": "Updated title",
+  "content": "Updated content"
+}
+
+#### Delete Note
+DELETE /api/notes/:id
+
+
+---
+
+Note: Due to Postman requiring authentication to create/export collections in the current environment, detailed API documentation has been provided instead. All endpoints are fully testable using any REST client.
+
 
