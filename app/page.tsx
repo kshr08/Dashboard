@@ -1,8 +1,21 @@
+"use client";
+
+import { useEffect } from "react";
+
 export default function Home() {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      window.location.href = "/dashboard";
+    } else {
+      window.location.href = "/login";
+    }
+  }, []);
+
   return (
-    <div style={{ color: "white", padding: "40px" }}>
-      <h1>Hello Shravani 👋</h1>
-      <p>Your Next.js app is working!</p>
+    <div className="flex items-center justify-center h-screen">
+      <p>Redirecting...</p>
     </div>
   );
 }
