@@ -155,13 +155,13 @@ export default function Dashboard() {
 
           {notes.length === 0 && search.trim() === "" && (
             <p className="text-center text-gray-500 mt-6">
-              No notes yet. Add your first note 🚀
+              No notes yet. Add your first note.
             </p>
           )}
 
           {search.trim() !== "" && filteredNotes.length === 0 && (
             <p className="text-center text-gray-600 font-medium mt-6">
-              No matching notes found 🔍
+              No matching notes found.
             </p>
           )}
 
