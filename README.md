@@ -136,4 +136,18 @@ DELETE /api/notes/:id
 
 Note: Due to Postman requiring authentication to create/export collections in the current environment, detailed API documentation has been provided instead. All endpoints are fully testable using any REST client.
 
+## Note on how I would scale the frontend-backend integration for production:
+Scaling the Frontend–Backend Integration for Production
+
+If this application were to be taken to production, the frontend and backend would be treated as two independent services that communicate through well-defined APIs.
+
+On the frontend side, the Next.js app would be deployed on a platform like Vercel or Netlify, which provides built-in CDN support. This ensures fast load times across different regions. Static assets and pages can be cached, reducing unnecessary API calls. Environment variables would be used to switch API endpoints cleanly between development, staging, and production environments.
+
+On the backend side, the Node.js API would be deployed as a stateless service. Since authentication is handled using JWTs, the backend does not rely on server-side sessions, which makes horizontal scaling straightforward. Multiple backend instances can be added behind a load balancer as traffic grows. Prisma acts as an abstraction layer over PostgreSQL, making database management, schema changes, and performance optimization easier.
+
+For the database, PostgreSQL can be scaled using indexing, connection pooling, and read replicas if required. As the application grows, commonly accessed data can be cached using an in-memory store like Redis to improve response times.
+
+From a security and reliability perspective, sensitive values such as JWT secrets and database credentials would be stored securely using environment variables or secret managers. HTTPS would be enforced across all services, and additional protections like rate limiting and request validation can be added to secure the APIs.
+
+Finally, with a CI/CD pipeline in place, frontend and backend changes can be tested and deployed independently. The current modular project structure already supports this, making future feature development and maintenance easier as the application scales.
 
