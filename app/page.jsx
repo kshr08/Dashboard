@@ -8,16 +8,7 @@ import API from "@/lib/api";
 export default function AuthPage() {
   const [isRegister, setIsRegister] = useState(false);
 
-  
-  useEffect(() => {
-  const token = document.cookie
-    .split("; ")
-    .find((row) => row.startsWith("token="));
 
-  if (token) {
-    window.location.href = "/dashboard";
-  }
-}, []);
 
   const [loginData, setLoginData] = useState({
     email: "",

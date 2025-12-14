@@ -84,15 +84,19 @@ export default function Dashboard() {
     window.location.replace("/");
   };
 
-  useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      window.location.href = "/login";
-      return;
-    }
+useEffect(() => {
+  const token = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("token="));
 
-    fetchUserProfile();
-    fetchNotes();
-  }, []);
+  if (!token) {
+    window.location.href = "/";
+    return;
+  }
+
+  fetchUserProfile();
+  fetchNotes();
+}, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] p-8">
