@@ -68,7 +68,7 @@ npx prisma migrate dev
 node server.js  
 
 ---
-
+#### API Documentation
 
 ### Base URL
 http://localhost:4000
